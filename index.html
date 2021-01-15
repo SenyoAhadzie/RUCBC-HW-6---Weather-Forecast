@@ -42,11 +42,11 @@
                 <div class="row" id="overallWeather">
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="card-link">Card link</a>
-                          <a href="#" class="card-link">Another link</a>
+                          <h1 class="card-title" id="cityInfo"></h1>
+                          <p class="card-text" id="overallCityTemp"></p>
+                          <p class="card-text" id="overallCityHumidity"></p>
+                          <p class="card-text" id="overallWindSpeed"></p>
+                          <p class="card-text" id="overallUVIndex"></p>
                         </div>
                       </div>
                 </div>
@@ -149,6 +149,11 @@
         method:"GET"
         }).then(function (response)
         {
+            $('#cityInfo').text(`${response.city.name} (${response.list[0].dt_txt})`);
+            $('#overallCityTemp').text(`Temperature: ${response.list[0].main.temp}`);
+            $('#overallCityHumidity').text(`Humidity: ${response.list[0].main.humidity}`);
+            $('#overallWindSpeed').text(`Wind Speed: ${response.list[0].wind.speed} MPH`);
+            // $('#overallUVIndex').text(`${response.city.name} (${response.list[0].dt_txt})`);
             console.log(response); 
             //City Name
             console.log(response.city.name);        
@@ -165,13 +170,13 @@
             //5-Day Forecast
             //  Day Forecast Card:
             //      Date:
-            console.log(response.list[i % ].dt_txt);   
-            //      pictoWeather
-            console.log(response.list[i % ].weather)
-            //      Temp
-            console.log(response.list[i % ].main.temp);
-            //      Humidity
-            console.log(response.list[i % ].main.humidity);  
+            // console.log(response.list[i % ].dt_txt);   
+            // //      pictoWeather
+            // console.log(response.list[i % ].weather)
+            // //      Temp
+            // console.log(response.list[i % ].main.temp);
+            // //      Humidity
+            // console.log(response.list[i % ].main.humidity);  
         // var h1Contents=cityName+' Weather Details';
         // $(".city").append($("<h1>").text(h1Contents));
         // console.log(response);
