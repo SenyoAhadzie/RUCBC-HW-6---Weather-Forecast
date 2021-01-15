@@ -141,6 +141,13 @@
         else
         {
             var oldCities=JSON.parse(localStorage.getItem('oldCities'));
+            for (var i=0;i<oldCities.length;i++)
+            {
+                var newLi=$("<li>");
+                newLi.attr('class','list-group-item');
+                newLi.text(oldCities[i]);
+                $('#oldCitiesCardHolder').prepend(newLi);
+            }
         }
         var oldCities=[];
         $("#searchBttn").on('click',
@@ -152,7 +159,13 @@
             var cityName=$('#searchField').val();
             oldCities.push(cityName);
             localStorage.setItem('oldCities',JSON.stringify(oldCities));
-            $('#oldCitiesCardHolder').append('<li>').attr('class','list-group-item').text(cityName);
+            var newLi=$("<li>");
+            newLi.attr('class','list-group-item');
+            newLi.text(cityName);
+            $('#oldCitiesCardHolder').prepend(newLi);
+            // $('#oldCitiesCardHolder').append('<li>').attr('class','list-group-item').text(cityName);
+            //     $('#oldCitiesCardHolder').append('<li>').attr('class','list-group-item').text('R1');
+            //         $('#oldCitiesCardHolder').append('<li>').attr('class','list-group-item').text('R2');
             var stateName='';
             var countryName='';
             var api_key= '840c5ef0c60ff8e81310cdc025167953';
