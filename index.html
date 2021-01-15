@@ -250,7 +250,7 @@
                 //         $('#oldCitiesCardHolder').append('<li>').attr('class','list-group-item').text('R2');
                 var stateName='';
                 var countryName='';
-                var api_key= 'b9bdc68cef51dfcc1cd7c510c66932fa';
+                var api_key= '840c5ef0c60ff8e81310cdc025167953';
                 queryURL=`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${api_key}`;
                 // Create an AJAX call to retrieve data Log the data in console
                 $.ajax(
@@ -269,6 +269,21 @@
                     $('#overallCityTemp').text(`Temperature: ${response.list[0].main.temp}`);
                     $('#overallCityHumidity').text(`Humidity: ${response.list[0].main.humidity}`);
                     $('#overallWindSpeed').text(`Wind Speed: ${response.list[0].wind.speed} MPH`);
+
+                    // //UV Index
+                    // var lat=response.city.coord.lat;
+                    // var lon=response.city.coord.lon;\
+                    // var UVIndex="";
+                    // $.ajax(
+                    //     {
+                    //         url:`http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${api_key}`,
+                    //         method:"GET"
+                    //         }).then(function (response2)
+                    //         {
+                    //             UVIndex=response2.value;
+                    //         }
+                    // );
+                    
                     var days=['One','Two','Three','Four','Five'];
                     var initialDay=0;
                     var fiveDayList=[];
