@@ -8,8 +8,89 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <!-- Weather Dashboard -->
-    <!-- Card Info -->
+    <div id="pageDiv"> 
+        <div class="row">
+            <!-- Weather Dashboard -->
+            <div>
+                <h1>Weather Dashboard</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <h2>
+                        Search for a City:
+                    </h2>
+                </div>
+                <div class="row">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                      </form>
+                </div>
+                <div id="old-cities">
+                    <div class="card" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">Cras justo odio</li>
+                          <li class="list-group-item">Dapibus ac facilisis in</li>
+                          <li class="list-group-item">Vestibulum at eros</li>
+                        </ul>
+                      </div>
+                </div>  
+            </div>
+            <div class="col" id="display-info">
+                <div class="row" id="overallWeather">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="card-link">Card link</a>
+                          <a href="#" class="card-link">Another link</a>
+                        </div>
+                      </div>
+                </div>
+                <div class="row" id="fiveDay">
+                    <div class="col" id="day1">
+
+                    </div>
+                    <div class="col" id="day2">
+                        
+                    </div>
+                    <div class="col" id="day3">
+                        
+                    </div>
+                    <div class="col" id="day4">
+                        
+                    </div>
+                    <div class="col" id="day5">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Card Info
+    <div>
+        <div>
+            <div class="row">
+                <h2>
+                    Search for a City:
+                </h2>
+            </div>
+            <div class="row">
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+            </div>
+            <div id="old-cities">
+
+            </div>  
+        </div>
+        
+    </div> -->
     <!-- City Search -->
     <!-- Previous Searches -->
     
