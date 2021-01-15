@@ -24,8 +24,8 @@
                 </div>
                 <div class="row">
                     <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchField">
+                        <button class="btn btn-outline-success" type="button" id="searchBttn">Search</button>
                       </form>
                 </div>
                 <div id="old-cities">
@@ -137,42 +137,85 @@
     
 
     <script>
-        var cityName='Bujumbura';
-        var stateName='';
-        var countryName='';
-        var api_key= '840c5ef0c60ff8e81310cdc025167953';
-        queryURL=`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${api_key}`;
-        // Create an AJAX call to retrieve data Log the data in console
-        $.ajax(
+        $("#searchBttn").on('click',
+        function(event)
         {
-        url:queryURL,
-        method:"GET"
-        }).then(function (response)
-        {
-            $('#cityInfo').text(`${response.city.name} (${response.list[0].dt_txt})`);
-            $('#overallCityTemp').text(`Temperature: ${response.list[0].main.temp}`);
-            $('#overallCityHumidity').text(`Humidity: ${response.list[0].main.humidity}`);
-            $('#overallWindSpeed').text(`Wind Speed: ${response.list[0].wind.speed} MPH`);
-            var days=['One','Two','Three','Four','Five'];
-            var initialDay=0;
-            for (var i=0;i<days.length;i++)
+            event.preventDefault();
+            // var cityName='Bujumbura';
+            // console.log($('#searchField').val())
+            var cityName=$('#searchField').val();
+            var stateName='';
+            var countryName='';
+            var api_key= '840c5ef0c60ff8e81310cdc025167953';
+            queryURL=`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${api_key}`;
+            // Create an AJAX call to retrieve data Log the data in console
+            $.ajax(
             {
-                $(`#day${days[i]}`).text(response.list[i].dt_txt);
-                $(`#day${days[i]}Temp`).text(`Temp: ${response.list[i].main.temp}`);
-                $(`#day${days[i]}Humidity`).text(`Humidity: ${response.list[i].main.humidity}`);
-            }
-            // $('#overallUVIndex').text(`${response.city.name} (${response.list[0].dt_txt})`);
-            console.log(response); 
-            //City Name
-            console.log(response.city.name);        
-            //City Date
-            console.log(response.list[0].dt_txt);    
-            //Temperature
-            console.log(response.list[0].main.temp);    
-            //Humidity
-            console.log(response.list[0].main.humidity);    
-            //Wind Speed
-            console.log(response.list[0].wind.speed);    
+            url:queryURL,
+            method:"GET"
+            }).then(function (response)
+            {
+                $('#cityInfo').text(`${response.city.name} (${response.list[0].dt_txt})`);
+                $('#overallCityTemp').text(`Temperature: ${response.list[0].main.temp}`);
+                $('#overallCityHumidity').text(`Humidity: ${response.list[0].main.humidity}`);
+                $('#overallWindSpeed').text(`Wind Speed: ${response.list[0].wind.speed} MPH`);
+                var days=['One','Two','Three','Four','Five'];
+                var initialDay=0;
+                for (var i=0;i<days.length;i++)
+                {
+                    $(`#day${days[i]}`).text(response.list[i].dt_txt);
+                    $(`#day${days[i]}Temp`).text(`Temp: ${response.list[i].main.temp}`);
+                    $(`#day${days[i]}Humidity`).text(`Humidity: ${response.list[i].main.humidity}`);
+                }
+                // $('#overallUVIndex').text(`${response.city.name} (${response.list[0].dt_txt})`);
+                console.log(response); 
+                //City Name
+                console.log(response.city.name);        
+                //City Date
+                console.log(response.list[0].dt_txt);    
+                //Temperature
+                console.log(response.list[0].main.temp);    
+                //Humidity
+                console.log(response.list[0].main.humidity);    
+                //Wind Speed
+                console.log(response.list[0].wind.speed);    
+        });
+        // var cityName='Bujumbura';
+        // var stateName='';
+        // var countryName='';
+        // var api_key= '840c5ef0c60ff8e81310cdc025167953';
+        // queryURL=`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${api_key}`;
+        // // Create an AJAX call to retrieve data Log the data in console
+        // $.ajax(
+        // {
+        // url:queryURL,
+        // method:"GET"
+        // }).then(function (response)
+        // {
+        //     $('#cityInfo').text(`${response.city.name} (${response.list[0].dt_txt})`);
+        //     $('#overallCityTemp').text(`Temperature: ${response.list[0].main.temp}`);
+        //     $('#overallCityHumidity').text(`Humidity: ${response.list[0].main.humidity}`);
+        //     $('#overallWindSpeed').text(`Wind Speed: ${response.list[0].wind.speed} MPH`);
+        //     var days=['One','Two','Three','Four','Five'];
+        //     var initialDay=0;
+        //     for (var i=0;i<days.length;i++)
+        //     {
+        //         $(`#day${days[i]}`).text(response.list[i].dt_txt);
+        //         $(`#day${days[i]}Temp`).text(`Temp: ${response.list[i].main.temp}`);
+        //         $(`#day${days[i]}Humidity`).text(`Humidity: ${response.list[i].main.humidity}`);
+        //     }
+        //     // $('#overallUVIndex').text(`${response.city.name} (${response.list[0].dt_txt})`);
+        //     console.log(response); 
+        //     //City Name
+        //     console.log(response.city.name);        
+        //     //City Date
+        //     console.log(response.list[0].dt_txt);    
+        //     //Temperature
+        //     console.log(response.list[0].main.temp);    
+        //     //Humidity
+        //     console.log(response.list[0].main.humidity);    
+        //     //Wind Speed
+        //     console.log(response.list[0].wind.speed);    
             //UV Index
 
             //5-Day Forecast
