@@ -30,10 +30,7 @@
                 </div>
                 <div id="old-cities">
                     <div class="card" style="width: 18rem;">
-                        <ul class="list-group list-group-flush">
-                          <li class="list-group-item">Cras justo odio</li>
-                          <li class="list-group-item">Dapibus ac facilisis in</li>
-                          <li class="list-group-item">Vestibulum at eros</li>
+                        <ul class="list-group list-group-flush" id="oldCitiesCardHolder">
                         </ul>
                       </div>
                 </div>  
@@ -137,6 +134,15 @@
     
 
     <script>
+        if (localStorage.getItem('oldCities')===undefined)
+        {
+            var oldCities=[];
+        }
+        else
+        {
+            var oldCities=JSON.parse(localStorage.getItem('oldCities'));
+        }
+        var oldCities=[];
         $("#searchBttn").on('click',
         function(event)
         {
@@ -144,6 +150,9 @@
             // var cityName='Bujumbura';
             // console.log($('#searchField').val())
             var cityName=$('#searchField').val();
+            oldCities.push(cityName);
+            localStorage.setItem('oldCities',JSON.stringify(oldCities));
+            $('#oldCitiesCardHolder').append('<li>').attr('class','list-group-item').text(cityName);
             var stateName='';
             var countryName='';
             var api_key= '840c5ef0c60ff8e81310cdc025167953';
