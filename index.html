@@ -144,7 +144,7 @@
             for (var i=0;i<oldCities.length;i++)
             {
                 var newLi=$("<li>");
-                newLi.attr('class','list-group-item');
+                newLi.attr('class','list-group-item history');
                 newLi.text(oldCities[i]);
                 $('#oldCitiesCardHolder').prepend(newLi);
             }
@@ -156,6 +156,13 @@
                 event.preventDefault();
             }
         });
+        $(document).on('click', function(event)
+        {
+            if (event.target.classList.contains('history'))
+            {
+                searchCity(event.target.textContent);
+            }
+        });
         // var oldCities=[];
         $("#searchBttn").on('click',
         function(event)
@@ -164,6 +171,69 @@
             // var cityName='Bujumbura';
             // console.log($('#searchField').val())
             var cityName=$('#searchField').val();
+            searchCity(cityName);
+        
+        // var cityName='Bujumbura';
+        // var stateName='';
+        // var countryName='';
+        // var api_key= '840c5ef0c60ff8e81310cdc025167953';
+        // queryURL=`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${api_key}`;
+        // // Create an AJAX call to retrieve data Log the data in console
+        // $.ajax(
+        // {
+        // url:queryURL,
+        // method:"GET"
+        // }).then(function (response)
+        // {
+        //     $('#cityInfo').text(`${response.city.name} (${response.list[0].dt_txt})`);
+        //     $('#overallCityTemp').text(`Temperature: ${response.list[0].main.temp}`);
+        //     $('#overallCityHumidity').text(`Humidity: ${response.list[0].main.humidity}`);
+        //     $('#overallWindSpeed').text(`Wind Speed: ${response.list[0].wind.speed} MPH`);
+        //     var days=['One','Two','Three','Four','Five'];
+        //     var initialDay=0;
+        //     for (var i=0;i<days.length;i++)
+        //     {
+        //         $(`#day${days[i]}`).text(response.list[i].dt_txt);
+        //         $(`#day${days[i]}Temp`).text(`Temp: ${response.list[i].main.temp}`);
+        //         $(`#day${days[i]}Humidity`).text(`Humidity: ${response.list[i].main.humidity}`);
+        //     }
+        //     // $('#overallUVIndex').text(`${response.city.name} (${response.list[0].dt_txt})`);
+        //     console.log(response); 
+        //     //City Name
+        //     console.log(response.city.name);        
+        //     //City Date
+        //     console.log(response.list[0].dt_txt);    
+        //     //Temperature
+        //     console.log(response.list[0].main.temp);    
+        //     //Humidity
+        //     console.log(response.list[0].main.humidity);    
+        //     //Wind Speed
+        //     console.log(response.list[0].wind.speed);    
+            //UV Index
+
+            //5-Day Forecast
+            //  Day Forecast Card:
+            //      Date:
+            // console.log(response.list[i % ].dt_txt);   
+            // //      pictoWeather
+            // console.log(response.list[i % ].weather)
+            // //      Temp
+            // console.log(response.list[i % ].main.temp);
+            // //      Humidity
+            // console.log(response.list[i % ].main.humidity);  
+        // var h1Contents=cityName+' Weather Details';
+        // $(".city").append($("<h1>").text(h1Contents));
+        // console.log(response);
+        // $(".wind").text('Wind speed:' + response.wind.speed);
+        // $(".humidity").text('Humidity: ' + response.main.humidity);
+        // var tempK='Temperature (K): ' + response.main.temp;
+        // $(".temp").append($("<div>").text(tempK));
+        // var tempF='Temperature (F): ' + Math.round(100*9/5*(response.main.temp-273.15))/100;
+        // $(".temp").append($("<div>").text(tempF));
+        });
+        
+        function searchCity(cityName)
+        {
             if (cityName!=="")
             {
                 if (!oldCities.includes(cityName))
@@ -171,7 +241,7 @@
                     oldCities.push(cityName);
                     localStorage.setItem('oldCities',JSON.stringify(oldCities));
                     var newLi=$("<li>");
-                    newLi.attr('class','list-group-item');
+                    newLi.attr('class','list-group-item history');
                     newLi.text(cityName);
                     $('#oldCitiesCardHolder').prepend(newLi);
                 }
@@ -269,66 +339,8 @@
                     console.log(response.list[0].wind.speed);   
                     
                 });
-            }
-        // var cityName='Bujumbura';
-        // var stateName='';
-        // var countryName='';
-        // var api_key= '840c5ef0c60ff8e81310cdc025167953';
-        // queryURL=`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${api_key}`;
-        // // Create an AJAX call to retrieve data Log the data in console
-        // $.ajax(
-        // {
-        // url:queryURL,
-        // method:"GET"
-        // }).then(function (response)
-        // {
-        //     $('#cityInfo').text(`${response.city.name} (${response.list[0].dt_txt})`);
-        //     $('#overallCityTemp').text(`Temperature: ${response.list[0].main.temp}`);
-        //     $('#overallCityHumidity').text(`Humidity: ${response.list[0].main.humidity}`);
-        //     $('#overallWindSpeed').text(`Wind Speed: ${response.list[0].wind.speed} MPH`);
-        //     var days=['One','Two','Three','Four','Five'];
-        //     var initialDay=0;
-        //     for (var i=0;i<days.length;i++)
-        //     {
-        //         $(`#day${days[i]}`).text(response.list[i].dt_txt);
-        //         $(`#day${days[i]}Temp`).text(`Temp: ${response.list[i].main.temp}`);
-        //         $(`#day${days[i]}Humidity`).text(`Humidity: ${response.list[i].main.humidity}`);
-        //     }
-        //     // $('#overallUVIndex').text(`${response.city.name} (${response.list[0].dt_txt})`);
-        //     console.log(response); 
-        //     //City Name
-        //     console.log(response.city.name);        
-        //     //City Date
-        //     console.log(response.list[0].dt_txt);    
-        //     //Temperature
-        //     console.log(response.list[0].main.temp);    
-        //     //Humidity
-        //     console.log(response.list[0].main.humidity);    
-        //     //Wind Speed
-        //     console.log(response.list[0].wind.speed);    
-            //UV Index
-
-            //5-Day Forecast
-            //  Day Forecast Card:
-            //      Date:
-            // console.log(response.list[i % ].dt_txt);   
-            // //      pictoWeather
-            // console.log(response.list[i % ].weather)
-            // //      Temp
-            // console.log(response.list[i % ].main.temp);
-            // //      Humidity
-            // console.log(response.list[i % ].main.humidity);  
-        // var h1Contents=cityName+' Weather Details';
-        // $(".city").append($("<h1>").text(h1Contents));
-        // console.log(response);
-        // $(".wind").text('Wind speed:' + response.wind.speed);
-        // $(".humidity").text('Humidity: ' + response.main.humidity);
-        // var tempK='Temperature (K): ' + response.main.temp;
-        // $(".temp").append($("<div>").text(tempK));
-        // var tempF='Temperature (F): ' + Math.round(100*9/5*(response.main.temp-273.15))/100;
-        // $(".temp").append($("<div>").text(tempF));
-        });
-        
+        }
+    }
 
         //City Name 
         //City Date
